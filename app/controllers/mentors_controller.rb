@@ -4,6 +4,15 @@ class MentorsController < ApplicationController
   # GET /mentors or /mentors.json
   def index
     @mentors = Mentor.all
+    if params[:query].present?
+      query = I18n.transliterate(params[:query].downcase)
+      @mentors = @mentors.select do |mentor|
+        I18n.transliterate(mentor.mentorship_topics.to_s.downcase).include?(query)
+      end
+    end
+    respond_to do |format|
+        format.html { render :index }
+    end
   end
 
   # GET /mentors/1 or /mentors/1.json
