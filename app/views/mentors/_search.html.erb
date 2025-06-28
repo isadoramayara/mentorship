@@ -1,0 +1,9 @@
+<%= form_with url: mentors_path, method: :get, local: true do |form| %>
+  <div class="field">
+    <%= form.label :query, "Buscar por habilidade" %>
+    <%= form.text_field :query, placeholder: "Ex: Ruby, UX, Liderança..." %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Buscar" %>
+  </div>
+<% end %>
